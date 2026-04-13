@@ -1,1 +1,22 @@
- 
+template-file-path: mytest.yaml
+parameters:
+  S3BucketEncryptionKeyArn: ''
+  HomeRegion: us-east-1
+  QSPrincipalOrgId: ''
+  CreateRemediationRoles: 'true'
+  QSConfigurationId: dgdfo
+  AgentUpdateSchedule: rate(14 days)
+  EnableDHMCSchedule: rate(1 day)
+  InventoryCollectionSchedule: rate(12 hours)
+  QSType: LA
+  QSAttachConfigurationPolicy: 'true'
+  DelegatedAccountId: ''
+tags:
+  QuickSetupDefinitionID: dgdfo
+  QuickSetupManagerAccount: '070151713474'
+  QuickSetupDocumentVersionName: '3.0'
+  QuickSetupManagerRegion: us-east-1
+  QuickSetupDocument: AWSQuickSetupType-SSM
+  QuickSetupManagerArn: >-
+    arn:aws:ssm-quicksetup:us-east-1:070151713474:configuration-manager/e2cbf1a6-bfb9-4dbd-ad0e-899fda08a9bf
+  QuickSetupManagerID: e2cbf1a6-bfb9-4dbd-ad0e-899fda08a9bf
