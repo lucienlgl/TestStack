@@ -1,4 +1,4 @@
-template-file-path: mytest.yaml
+template-file-path: test.yaml
 parameters:
   S3BucketEncryptionKeyArn: ''
   HomeRegion: us-east-1
