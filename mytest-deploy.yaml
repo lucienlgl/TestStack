@@ -1,4 +1,5 @@
 template-file-path: test.yaml
+artifactPath: test.yaml
 parameters:
   S3BucketEncryptionKeyArn: ''
   HomeRegion: us-east-1
