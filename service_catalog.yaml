@@ -1,14 +1,35 @@
-resource "aws_servicecatalog_product" "git_product" {
-  name         = "My Git Product"
-  product_type = "CLOUD_FORMATION_TEMPLATE"
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  # Service Catalog Product（从 Git 同步）
+  SCProductFromGit:
+    Type: AWS::ServiceCatalog::CloudFormationProduct
+    Properties:
+      Name: "My-Git-Synced-Product"
+      Description: "从 Git 同步的 CloudFormation 产品"
+      ProductType: CLOUD_FORMATION_TEMPLATE
+      Owner: "Your-Team"
 
-  # GitSync 配置
-  connection_arn = "arn:aws:codestar-connections:..."
-  repository     = "owner/repo"
-  branch         = "main"
-  artifact_path  = "cf-templates/main.yaml"
+      # Git 同步配置（缺一不可）
+      ConnectionArn: "arn:aws:codestar-connections:ap-southeast-1:123456789012:connection/abc123-xxx"
+      Repository: "your-org/your-repo"
+      Branch: "main"
+      ArtifactPath: "test.yaml"
 
-  provisioning_artifact_parameters {
-    name = "v1"
-  }
-}
+      # 版本信息
+      ProvisioningArtifactParameters:
+        - Name: "v1"
+          Description: "Initial version from Git"
+
+  # 可选：Portfolio + 关联产品
+  SCPortfolio:
+    Type: AWS::ServiceCatalog::Portfolio
+    Properties:
+      DisplayName: "My-Git-Portfolio"
+      Description: "存放 Git 同步产品的 Portfolio"
+      ProviderName: "Your-Team"
+
+  AssociateProductWithPortfolio:
+    Type: AWS::ServiceCatalog::PortfolioProductAssociation
+    Properties:
+      PortfolioId: !Ref SCPortfolio
+      ProductId: !Ref SCProductFromGit
