@@ -1,13 +1,14 @@
-MySCProduct:
-  Type: "AWS::ServiceCatalog::CloudFormationProduct"
-  Properties:
-    Name: "My GitSync Product"
-    ProductType: "CLOUD_FORMATION_TEMPLATE"
-    # GitSync 核心配置
-    ConnectionArn: "arn:aws:codestar-connections:us-east-1:123456789012:connection/xxx"
-    Repository: "my-org/my-repo"
-    Branch: "main"
-    ArtifactPath: "templates/product.yaml" # 👈 必须加
-    ProvisioningArtifactParameters:
-      - Name: "v1"
-        Description: "Initial version from Git"
+resource "aws_servicecatalog_product" "git_product" {
+  name         = "My Git Product"
+  product_type = "CLOUD_FORMATION_TEMPLATE"
+
+  # GitSync 配置
+  connection_arn = "arn:aws:codestar-connections:..."
+  repository     = "owner/repo"
+  branch         = "main"
+  artifact_path  = "cf-templates/main.yaml"
+
+  provisioning_artifact_parameters {
+    name = "v1"
+  }
+}
