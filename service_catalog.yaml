@@ -17,7 +17,7 @@ Resources:
 
       # 版本信息
       ProvisioningArtifactParameters:
-        - Name: "v2"
+        - Name: "v3"
           Description: "Initial version from Git"
 
   # 可选：Portfolio + 关联产品
